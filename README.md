@@ -38,13 +38,13 @@ Install Git
 ---------------------
 
 Now we need to make sure git is installed. There are a number
-of git GUI clients, including bitbucket's (SourceTree)[https://www.atlassian.com/software/sourcetree/overview],
+of git GUI clients, including bitbucket's [SourceTree](https://www.atlassian.com/software/sourcetree/overview),
 or [others](http://git-scm.com/downloads/guis).
 I'll leave you to figure out your GUI of choice on your own if you like. 
 I always stick to the command line when I can, so that's what I'll be showing
 you how to do. In a terminal run the following:
 
-   git --version 
+    git --version 
 
 The latest version is git 2.2.1, so if you get an error or a version less than
 that you may need to [download and install git](http://git-scm.com/downloads). 
@@ -54,10 +54,10 @@ or go through the basics with [Try Git](try.github.com).
 Clone your repository
 ---------------------
 
-To download your repository so its ready to make modifications, we need to clone it.
+To download your repository so it's ready for modifications, we need to clone it.
 Once git is installed, run the following command with <repo url> replaced with
 the url to your repository (shown in the upper right of the Overview page on bit bucket).
-It'll look something like https://jallwine@bitbucket.org/jallwine/msu-csci441-spring-2015.git
+It'll look something like https://jallwine@bitbucket.org/jallwine/msu-csci441-spring-2015.git.
 
     git clone <repo url>
 
