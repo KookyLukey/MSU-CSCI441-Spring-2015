@@ -55,7 +55,7 @@ Clone your repository
 ---------------------
 
 To download your repository so it's ready for modifications, we need to clone it.
-Once git is installed, run the following command with <repo url> replaced with
+Once git is installed, run the following command with &lt;repo url&gt; replaced with
 the url to your repository (shown in the upper right of the Overview page on bit bucket).
 It'll look something like https://jallwine@bitbucket.org/jallwine/msu-csci441-spring-2015.git.
 
