@@ -89,3 +89,28 @@ Now if you run the `git remote -v` command you'll see two addition entries. You 
 to push to this one, but you will be able to pull new assignments by running the following:
 
     git pull csci441 master
+
+Install Qt
+----------
+
+All assignments and labs will be written in C++ using OpenGL and Qt. Qt is a cross platform
+UI framework. There are both commercial and open source licenses for Qt.  We'll be using the 
+open source version, which can be downloaded [here](http://www.qt.io/download-open-source/).
+Follow the instructions for installation on your platform.
+
+Build Lab 1
+-----------
+
+Once you have Qt installed, try compiling and running the provided lab 1 code. Qt projects
+are organized using project files (.pro files). The qt command `qmake` can generate a Makefile
+(or an Xcode project, or a Visual Studio project). I like to stick to using a Makefile so I can
+stay in a terminal:  
+
+    cd lab1
+    qmake
+    make
+    ./lab1
+
+It should print "Output triangle.jpg" to the terminal and triangle.jpg should be a blank, black image (it's
+your job to make it output a triangle). On the lab computers (in EPS 254, and others), multiple versions of qt are 
+installed on Fedora. To use the right version of qmake use `qmake-qt5`.
