@@ -136,9 +136,9 @@ server, where I can see them, run:
 
 Now your changes are all on bitbucket where I can see them. Be sure to include everything necessary
 to build and run your code! I recommend cloning your repository to another location (perhaps on the
-lab machines) and building it to make sure you've remembered to include everything. *If I am unable
+lab machines) and building it to make sure you've remembered to include everything. **If I am unable
 to build and run your program, you will be docked points, so be sure it runs on the lab computers
-from a clean checkout!*
+from a clean checkout!**
 
 For labs, be sure to push your changes up
 before demoing the lab to me in class. For programs, make sure your code is pushed before the deadline.
