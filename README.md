@@ -119,7 +119,7 @@ How To Submit Your Work
 -----------------------
 
 Once you start making changes to your code, you'll want to commit those changes and push them back up
-to the server. For every file you've changed or created, you'll want to run `get add <file name>`. This
+to the server. For every file you've changed or created, you'll want to run `git add <file name>`. This
 stages the file for commit. You can think of staging a file as flagging that you want to save it in your
 next commit. Once you've staged every file that you want to commit type:
 
@@ -130,13 +130,15 @@ use `git status`. `git status` will show you which files you've modified, which 
 and which files have been staged for commit. 
 
 You can commit as many times as you want locally. When you're ready to submit all your commits up to the
-server, where I can see them run:
+server, where I can see them, run:
 
     git push 
 
 Now your changes are all on bitbucket where I can see them. Be sure to include everything necessary
 to build and run your code! I recommend cloning your repository to another location (perhaps on the
-lab machines) and building it to make sure you've remembered to include everything.
+lab machines) and building it to make sure you've remembered to include everything. *If I am unable
+to build and run your program, you will be docked points, so be sure it runs on the lab computers
+from a clean checkout!*
 
 For labs, be sure to push your changes up
 before demoing the lab to me in class. For programs, make sure your code is pushed before the deadline.
