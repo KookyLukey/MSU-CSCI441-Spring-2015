@@ -134,9 +134,9 @@ server, where I can see them run:
 
     git push 
 
-Now your changes are all on bitbucket where I can see them. Be sure to included everything necessary
+Now your changes are all on bitbucket where I can see them. Be sure to include everything necessary
 to build and run your code! I recommend cloning your repository to another location (perhaps on the
-lab machines) and building it from a clean location to make sure you've remembered to include everything.
+lab machines) and building it to make sure you've remembered to include everything.
 
 For labs, be sure to push your changes up
 before demoing the lab to me in class. For programs, make sure your code is pushed before the deadline.
