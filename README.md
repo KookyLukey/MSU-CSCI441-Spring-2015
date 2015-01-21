@@ -111,6 +111,13 @@ stay in a terminal:
     make
     ./lab1
 
+    Windows users:
+    cd lab1
+    qmake
+    mingw32-make
+    cd release
+    lab1.exe
+
 It should print "Output triangle.jpg" to the terminal and triangle.jpg should be a blank, black image (it's
 your job to make it output a triangle). On the lab computers (in EPS 254, and others), multiple versions of qt are 
 installed on Fedora. To use the right version of qmake use `qmake-qt5`.
