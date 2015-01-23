@@ -1,0 +1,38 @@
+#ifndef __GLWIDGET__INCLUDE__
+#define __GLWIDGET__INCLUDE__
+
+#include <QGLWidget>
+
+class Point {
+    public: 
+        float x;
+        float y;
+        Point() : x(0), y(0) {}
+        Point(float xx, float yy) : x(xx), y(yy) {}
+};
+class Color {
+    public: 
+        float r;
+        float g;
+        float b;
+        Color() : r(0), g(0), b(0) {}
+        Color(float rr, float gg, float bb) : r(rr), g(gg), b(bb) {}
+};
+
+class GLWidget : public QGLWidget {
+    Q_OBJECT
+
+    public:
+        GLWidget(const QGLFormat& format, QWidget *parent=0);
+        ~GLWidget();
+
+    protected:
+        void initializeGL();
+        void resizeGL(int w, int h);
+        void paintGL();
+    private:
+        GLuint loadShaders();
+        Point w2nd(Point pt_w);
+};
+
+#endif
