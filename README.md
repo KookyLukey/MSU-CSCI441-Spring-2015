@@ -46,8 +46,7 @@ you how to do. In a terminal run the following:
 
     git --version 
 
-The latest version is git 2.2.1, so if you get an error or a version less than
-that you may need to [download and install git](http://git-scm.com/downloads). 
+If you get an error you may need to [download and install git](http://git-scm.com/downloads). 
 If you've never used git before you might want to [read up on the docs](http://git-scm.com/doc), 
 or go through the basics with [Try Git](try.github.com).
 
