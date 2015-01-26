@@ -3,8 +3,7 @@
 
 using namespace std;
 
-GLWidget::GLWidget(const QGLFormat &format, QWidget *parent) : QGLWidget(format, parent) {
-    setAutoBufferSwap(false);
+GLWidget::GLWidget(QWidget *parent) : QOpenGLWidget(parent) {
 }
 
 GLWidget::~GLWidget() {

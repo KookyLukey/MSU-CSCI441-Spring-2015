@@ -37,13 +37,12 @@ void Info::printOpenGLInfo() {
 int main(int argc, char** argv) {
     QApplication a(argc, argv);
 
-    QGLFormat format;
+    QSurfaceFormat format;
     format.setVersion(3,3);  // set a modern version of OpenGL
-    format.setProfile(QGLFormat::CoreProfile); 
-    format.setDoubleBuffer(false);
-    format.setDepth(false);
+    format.setProfile(QSurfaceFormat::CoreProfile); 
+    QSurfaceFormat::setDefaultFormat(format);
 
-    GLWidget glWidget(format);
+    GLWidget glWidget;
     qreal pixelRatio = glWidget.devicePixelRatio();
     glWidget.resize(640/pixelRatio,480/pixelRatio);
     glWidget.show();
