@@ -11,6 +11,8 @@ GLWidget::~GLWidget() {
 }
 
 void GLWidget::initializeGL() {
+    initializeOpenGLFunctions();
+
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
     // Create a new Vertex Array Object on the GPU which
@@ -120,6 +122,7 @@ Point GLWidget::w2nd(Point pt_w) {
     /* convert pt_w to normalized device coordinates */
     /* use this method to convert your input coordinates to
        normalized device coordinates */
+    return pt_w;
 }
 
 

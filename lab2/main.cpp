@@ -1,11 +1,18 @@
 #include <QApplication>
+#include <QOpenGLFunctions_3_3_Core>
 
 #include "glwidget.h"
 #include <iostream>
 
 using namespace std;
 
-void printOpenGLInfo() {
+struct Info : QOpenGLFunctions_3_3_Core {
+    void printOpenGLInfo();
+};
+
+void Info::printOpenGLInfo() {
+    initializeOpenGLFunctions();
+
     const GLubyte* version = glGetString(GL_VERSION);
     cout << version << endl;
 
@@ -25,7 +32,6 @@ void printOpenGLInfo() {
         const GLubyte* extension = glGetStringi(GL_EXTENSIONS,i);
         cout << extension << endl;
     }
-
 }
 
 int main(int argc, char** argv) {
@@ -42,7 +48,8 @@ int main(int argc, char** argv) {
     glWidget.resize(640/pixelRatio,480/pixelRatio);
     glWidget.show();
 
-    printOpenGLInfo();
+    Info f;
+    f.printOpenGLInfo();
 
     return a.exec();
 }
