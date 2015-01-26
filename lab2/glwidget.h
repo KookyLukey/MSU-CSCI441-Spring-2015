@@ -2,6 +2,7 @@
 #define __GLWIDGET__INCLUDE__
 
 #include <QGLWidget>
+#include <QOpenGLFunctions_3_3_Core>
 
 class Point {
     public: 
@@ -19,7 +20,7 @@ class Color {
         Color(float rr, float gg, float bb) : r(rr), g(gg), b(bb) {}
 };
 
-class GLWidget : public QGLWidget {
+class GLWidget : public QGLWidget, protected QOpenGLFunctions_3_3_Core {
     Q_OBJECT
 
     public:
