@@ -4,6 +4,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include <QTextStream>
+
 using namespace std;
 using namespace glm;
 
@@ -179,7 +181,18 @@ const GLchar* GLWidget::readShader(const char* filename) {
 GLuint GLWidget::loadShaders() {
     GLuint program = glCreateProgram();
 
-    const GLchar* vertSource = GLWidget::readShader("vert.glsl");
+    // read vertex shader from Qt resource file
+    QFile vertFile(":/vert.glsl");
+    vertFile.open(QFile::ReadOnly | QFile::Text);
+    QString vertString;
+    QTextStream vertStream(&vertFile);
+    vertString.append(vertStream.readAll());
+    string vertSTLString = vertString.toStdString();
+
+    cout << "Vertex Shader:" << endl;
+    cout << vertSTLString << endl;
+
+    const GLchar* vertSource = vertSTLString.c_str();
 
     GLuint vertShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertShader, 1, &vertSource, NULL);
@@ -198,8 +211,20 @@ GLuint GLWidget::loadShaders() {
         }
     }
     glAttachShader(program, vertShader);
-    
-    const GLchar* fragSource = GLWidget::readShader("frag.glsl");
+
+    // read fragment shader from Qt resource file
+    QFile fragFile(":/frag.glsl");
+    fragFile.open(QFile::ReadOnly | QFile::Text);
+    QString fragString;
+    QTextStream fragStream(&fragFile);
+    fragString.append(fragStream.readAll());
+    string fragSTLString = fragString.toStdString();
+
+    cout << "Fragment Shader:" << endl;
+    cout << fragSTLString << endl;
+
+    const GLchar* fragSource = fragSTLString.c_str();
+
     GLuint fragShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragShader, 1, &fragSource, NULL);
     glCompileShader(fragShader);
