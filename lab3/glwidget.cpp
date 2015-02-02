@@ -5,7 +5,6 @@
 #include <glm/gtc/type_ptr.hpp>
 
 using namespace std;
-using namespace glm;
 
 
 GLWidget::GLWidget(QWidget *parent) : QOpenGLWidget(parent), outline(false), drawMode(0) {

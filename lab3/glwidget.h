@@ -2,7 +2,7 @@
 #define __GLWIDGET__INCLUDE__
 
 #include <QOpenGLWidget>
-#include <QOpenGLFunctions>
+#include <QOpenGLFunctions_3_3_Core>
 #include <QMouseEvent>
 #include <glm/glm.hpp>
 
@@ -11,9 +11,9 @@
 // glm warnings
 #define GLM_FORCE_RADIANS
 
-using namespace glm;
+using glm::vec2;
 
-class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
+class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions_3_3_Core {
     Q_OBJECT
 
     public:
