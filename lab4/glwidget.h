@@ -9,7 +9,7 @@
 
 #define GLM_FORCE_RADIANS
 
-using namespace glm;
+using glm::mat4;
 
 class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions_3_3_Core { 
     Q_OBJECT
