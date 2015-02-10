@@ -1,9 +1,11 @@
 HEADERS += glwidget.h 
 SOURCES += glwidget.cpp main.cpp
 
-QT += opengl
+QT += opengl designer
 CONFIG -= app_bundle
-INCLUDEPATH += "/usr/local/include"
+CONFIG += console c++11
+INCLUDEPATH += "../include"
+INCLUDEPATH += $$PWD
 
 RESOURCES += shaders.qrc
 
