@@ -12,6 +12,7 @@ GLWidget::~GLWidget() {
 void GLWidget::initializeGL() {
     initializeOpenGLFunctions();
 
+<<<<<<< HEAD
     float x1,x2,x3,y1,y2,y3;
     float r1,r2,r3,g1,g2,g3,b1,b2,b3;
 
@@ -46,6 +47,8 @@ void GLWidget::initializeGL() {
 
 
 
+=======
+>>>>>>> 54af150d23d2e1365d974744129c38b558b4b178
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
     // Create a new Vertex Array Object on the GPU which
@@ -198,11 +201,14 @@ Point GLWidget::w2nd(Point pt_w) {
     /* convert pt_w to normalized device coordinates */
     /* use this method to convert your input coordinates to
        normalized device coordinates */
+<<<<<<< HEAD
 //    pt_w.x = -1 + pt_w.x * (1/320);
 //    cout << pt_w.x << "\n";
 //    pt_w.y = 1 - pt_w.y * (1/240);
 //    cout << pt_w.y << "\n";
 
+=======
+>>>>>>> 54af150d23d2e1365d974744129c38b558b4b178
     return pt_w;
 }
 
