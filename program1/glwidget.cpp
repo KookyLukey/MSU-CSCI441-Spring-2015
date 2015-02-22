@@ -14,6 +14,7 @@ using namespace std;
 
 GLint uniform_loc;
 QImage img, img_data;
+char path[300];
 
 
 
@@ -50,8 +51,11 @@ void GLWidget::keyPressEvent(QKeyEvent *event) {
 
         case Qt::Key_A:{
 
+        cout << "Please input a path to your desired file.";
+        scanf("%s", path);
+        QString qpath = path;
 
-        img.load("C:\\Users\\Luke\\Documents\\GitHub\\MSU-CSCI441-Spring-2015\\program1\\space_cat.png", "PNG");
+        img.load(qpath, "PNG");
         img_data = QGLWidget::convertToGLFormat(img);
         resize(img.size());
         break;
