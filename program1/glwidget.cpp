@@ -7,12 +7,14 @@
 #include <QTextStream>
 #include "qimage.h"
 #include <QGLWidget>
+#include "glut.h"
 
 
 using namespace std;
 
 GLint uniform_loc;
 QImage img, img_data;
+
 
 
 GLWidget::GLWidget(QWidget *parent) : QOpenGLWidget(parent), outline(false), drawMode(0) {
@@ -48,7 +50,8 @@ void GLWidget::keyPressEvent(QKeyEvent *event) {
 
         case Qt::Key_A:{
 
-        img.load("squirrel.jpg", "JPG");
+
+        img.load("C:\\Users\\Luke\\Documents\\GitHub\\MSU-CSCI441-Spring-2015\\program1\\space_cat.png", "PNG");
         img_data = QGLWidget::convertToGLFormat(img);
         resize(img.size());
         break;
@@ -84,6 +87,8 @@ void GLWidget::keyPressEvent(QKeyEvent *event) {
 
 void GLWidget::mousePressEvent(QMouseEvent *event) {
     if(pts.size() <= num_pts) {
+
+
         // devicePixelRatio will be 1 on standard displays.
         // On retina display devices (mac book pro retina, tablets, phones, etc)
         // devicePixelRatio will be greater than 1.
@@ -96,13 +101,23 @@ void GLWidget::mousePressEvent(QMouseEvent *event) {
         pts[num_pts].x = event->x()*pixelRatio;
         pts[num_pts].y = event->y()*pixelRatio;
         cout << "Added point (" << pts[num_pts].x << ", " << pts[num_pts].y << ") " << endl;
-        cout << "Make sure your orthographic projection matrix "
-                "is set up so you can see the points." << endl;
-        cout << "Coordinates: (" << pts[num_pts].x << "," << pts[num_pts].y << ")\n";
+        //cout << "Coordinates: (" << pts[num_pts].x << "," << pts[num_pts].y << ")\n";
         num_pts++;
 
         glBindBuffer(GL_ARRAY_BUFFER, positionBuffer);
         glBufferData(GL_ARRAY_BUFFER, pts.size() * 8, pts.data(), GL_DYNAMIC_DRAW);
+
+
+        vector< unsigned char > pixels( 1 * 1 * 4 );
+        //GLubyte pixel;
+        GLWidget::glReadPixels(event->x()*pixelRatio, event->y()*pixelRatio, 1, 1, GL_RED, GL_UNSIGNED_BYTE, &pixels);
+        //cout << pixel;
+
+        cout << "r: " << (int)pixels[0] << endl;
+            cout << "g: " << (int)pixels[1] << endl;
+            cout << "b: " << (int)pixels[2] << endl;
+            cout << "a: " << (int)pixels[3] << endl;
+            cout << endl;
         update();
     } else {
         cout << "Three points is the max. "
@@ -168,8 +183,6 @@ void GLWidget::resizeGL(int w, int h) {
 
 void GLWidget::paintGL() {
     glClear(GL_COLOR_BUFFER_BIT);
-
-    glDrawPixels(img.width(), img.height(), GL_RGBA, GL_UNSIGNED_BYTE, img_data.bits());
 
     // draw primitives based on the current draw mode
     glDrawArrays(drawMode, 0, num_pts);
