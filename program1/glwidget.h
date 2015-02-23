@@ -34,10 +34,12 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions_3_3_Core {
         static const GLchar* readShader(const char* filename);
 
         GLuint positionBuffer;
+        GLuint squareBuffer;
         bool outline;
         GLenum drawMode;
         //vec2 pts[3];
         std::vector<vec2> pts;
+        std::vector<vec2> square;
         int num_pts;
 };
 

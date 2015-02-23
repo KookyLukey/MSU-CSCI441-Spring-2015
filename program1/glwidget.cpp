@@ -16,12 +16,19 @@ GLint uniform_loc;
 QImage img, img_data;
 char path[300];
 
-
-
 GLWidget::GLWidget(QWidget *parent) : QOpenGLWidget(parent), outline(false), drawMode(0) {
     num_pts = 0;
     drawMode = GL_POINTS;
-
+    int squareSize;
+    square.resize(4);
+//    square[0].x = 0.0f;
+//    square[0].y = 0.0f;
+//    square[1].x = 0.0f;
+//    square[1].y = 10.0f;
+//    square[2].x = 10.0f;
+//    square[2].y = 10.0f;
+//    square[3].x = 10.0f;
+//    square[3].y = 0.0f;
 }
 
 GLWidget::~GLWidget() {
@@ -51,11 +58,11 @@ void GLWidget::keyPressEvent(QKeyEvent *event) {
 
         case Qt::Key_A:{
 
-        cout << "Please input a path to your desired file.";
-        scanf("%s", path);
+//        cout << "Please input a path to your desired file.";
+//        scanf("%s", path);
         QString qpath = path;
 
-        img.load(qpath, "PNG");
+        img.load("E:\\Pictures\\red.png", "PNG");
         img_data = QGLWidget::convertToGLFormat(img);
         resize(img.size());
         break;
@@ -108,20 +115,37 @@ void GLWidget::mousePressEvent(QMouseEvent *event) {
         //cout << "Coordinates: (" << pts[num_pts].x << "," << pts[num_pts].y << ")\n";
         num_pts++;
 
-        glBindBuffer(GL_ARRAY_BUFFER, positionBuffer);
-        glBufferData(GL_ARRAY_BUFFER, pts.size() * 8, pts.data(), GL_DYNAMIC_DRAW);
+//        glBindBuffer(GL_ARRAY_BUFFER, positionBuffer);
+//        glBufferData(GL_ARRAY_BUFFER, pts.size() * 8, pts.data(), GL_DYNAMIC_DRAW);
+
+        square[0].x = pts[num_pts].x;
+        square[0].y = pts[num_pts].y;
+        square[1].x = pts[num_pts].x + 10;
+        square[1].y = pts[num_pts].y;
+        square[2].x = pts[num_pts].x + 10;
+        square[2].y = pts[num_pts].y + 10;
+        square[3].x = pts[num_pts].x;
+        square[3].y = pts[num_pts].y + 10;
+
+        cout << square[0].x << "\n" << square[0].y << "\n" << square[1].x << "\n" << square[1].y << "\n" <<
+                               square[2].x << "\n" << square[2].y << "\n" << square[3].x << "\n" << square[3].y;
+
+        glBindBuffer(GL_ARRAY_BUFFER, squareBuffer);
+        glBufferData(GL_ARRAY_BUFFER, square.size() * 8, square.data(), GL_DYNAMIC_DRAW);
+        //glDrawArrays(GL_LINE_LOOP, 0, 4);
 
 
-        vector< unsigned char > pixels( 1 * 1 * 4 );
+        vector<unsigned char> pixels( 1 * 1 * 4 );
         //GLubyte pixel;
-        GLWidget::glReadPixels(event->x()*pixelRatio, event->y()*pixelRatio, 1, 1, GL_RED, GL_UNSIGNED_BYTE, &pixels);
+        GLWidget::glReadPixels(0, 0, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, &pixels[0]);
         //cout << pixel;
 
         cout << "r: " << (int)pixels[0] << endl;
-            cout << "g: " << (int)pixels[1] << endl;
-            cout << "b: " << (int)pixels[2] << endl;
-            cout << "a: " << (int)pixels[3] << endl;
-            cout << endl;
+        cout << "g: " << (int)pixels[1] << endl;
+        cout << "b: " << (int)pixels[2] << endl;
+        cout << "a: " << (int)pixels[3] << endl;
+        cout << endl;
+
         update();
     } else {
         cout << "Three points is the max. "
@@ -144,10 +168,14 @@ void GLWidget::initializeGL() {
 
     // Create a buffer on the GPU for position data
     glGenBuffers(1, &positionBuffer);
+    glGenBuffers(1, &squareBuffer);
 
     // Upload the position data to the GPU, storing
     // it in the buffer we just allocated.
     glBindBuffer(GL_ARRAY_BUFFER, positionBuffer);
+    glBufferData(GL_ARRAY_BUFFER, 0, NULL, GL_DYNAMIC_DRAW);
+
+    glBindBuffer(GL_ARRAY_BUFFER, squareBuffer);
     glBufferData(GL_ARRAY_BUFFER, 0, NULL, GL_DYNAMIC_DRAW);
 
     // Load our vertex and fragment shaders into a program object
@@ -163,6 +191,8 @@ void GLWidget::initializeGL() {
     glEnableVertexAttribArray(positionIndex);
     glVertexAttribPointer(positionIndex, 2, GL_FLOAT, GL_FALSE, 0, 0);
     uniform_loc = glGetUniformLocation(program, "projMatrix");
+
+    glBindBuffer(GL_ARRAY_BUFFER, squareBuffer);
 }
 
 void GLWidget::resizeGL(int w, int h) {
